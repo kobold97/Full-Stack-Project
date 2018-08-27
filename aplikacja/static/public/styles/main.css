@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+body{
+    background-color: black;
+}
+.main_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #ffffff;
+}
+.main_nav a{
+    text-decoration: none;
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+    border: 1px solid black;
+    flex: 1;
+    font-family: 'Hanalei Fill', cursive;
+    transition: 0.4s;
+    white-space: nowrap;
+}
+.main_nav a:nth-of-type(1):hover{
+    font-size: 200%;
+    padding: 11px;
+    background-color: purple;
+    white-space: nowrap;
+}
+.main_nav a:nth-of-type(2):hover{
+    font-size: 200%;
+    padding: 11px;
+    background-color: pink;
+}
+.main_nav a:nth-of-type(3):hover{
+    font-size: 200%;
+    padding: 11px;
+    background-color: gold;
+}
+.tiles{
+    font-family: 'Roboto Slab', serif;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.tiles li{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    border: 1px solid black;
+    flex: 0 1;
+    margin: 10px 0;
+    height: 305px;
+    background-color: #ffffff;
+}
+.tiles li img{
+    max-width: 300px;
+    max-height: 300px;
+    margin-top: auto;
+}
+.tiles li h1{
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    transition: 1s;
+    margin: 0;
+}
+
+.tiles li a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    /* margin-bottom: auto; */
+}
+
+.tiles h1:hover{
+    font-size: 35px;
+    background-color: purple;
+    border: 1px solid black;
+}
+
+.tiles li:hover{
+    box-shadow: 0 0 30px red;
+]}
