@@ -1,10 +1,21 @@
- <form action="/process" method="POST">
- <input type="hidden" name="hush" val="hidden, but not secret!">
- <div>
- <label for="fieldColor">Your favorite color: </label>
- <input type="text" id="fieldColor" name="color">
- </div>
- <div>
- <button type="submit">Submit</button>
- </div>
+<form action="/process" method="POST">
+        <fieldset>
+        <legend>What subject you want to tickle?</legend>
+        <div class="manage">
+        <label>Subject</label>
+        <select name="field4" class="field-select">
+        <option value="Review">Review</option>
+        <option value="Topic">Topic of the next article</option>
+        <option value="General">General Question</option>
+        </select>
+        </div>
+        </fieldset>
+        <fieldset>
+        <legend>Write a message and influence the community!</legend>
+        <div class="manage">
+        <label class="cent">Your Message <span class="required">*</span></label>
+        <textarea name="field5"></textarea>
+        </div>
+        </fieldset>
+        <input type="submit" value="Submit" action="process" method="POST"/>
 </form>
