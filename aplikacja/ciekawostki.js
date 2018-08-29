@@ -35,6 +35,12 @@ app.get('', function(req, res){
     });
 });
 
+app.get('/js', function(req, res){
+    res.render('js', {
+        pageTestScript: '/qa/tests-js.js'
+    });
+});
+
 app.get('/contact', function(req, res){
     res.render('contact');
 });

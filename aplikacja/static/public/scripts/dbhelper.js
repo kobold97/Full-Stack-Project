@@ -1,13 +1,13 @@
-function GET_DATABASE_URL() {
-    return `/data/tiles.json`;
-}
+// function GET_DATABASE_URL() {
+//     return `/data/tiles.json`;
+// }
 
 /**
  * Fetch all restaurants.
  */
-function fetchTailes(callback) {
+function fetchTailes(url, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', GET_DATABASE_URL());
+    xhr.open('GET', url);
     xhr.onload = () => {
     if (xhr.status === 200) { // Got a success response from server!
         const json = JSON.parse(xhr.responseText);

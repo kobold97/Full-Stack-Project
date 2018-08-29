@@ -1,0 +1,23 @@
+{
+    "tailes": [{
+        "name": "Testing With Map!",
+        "photograph": "1.jpg"
+    }, {
+        "name": "'new' keyword!",
+        "photograph": "1.jpg"
+    },
+    {
+        "name": "XHR is old!",
+        "photograph": "1.jpg"
+    },
+    {
+        "name": "-I PROMISE",
+        "photograph": "1.jpg"
+    },{
+        "name": "== vs ===",
+        "photograph": "1.jpg"
+    },{
+        "name": "Prototypes",
+        "photograph": "1.jpg"
+    }]
+}
