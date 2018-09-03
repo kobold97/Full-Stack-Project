@@ -1,6 +1,15 @@
 var express = require('express');
 var app = express();
 
+var mongodb = require('mongodb');
+var findMainTiles = require('./dbhelper').findMainTiles;
+var findJsTiles = require('./dbhelper').findJsTiles;
+
+{
+    var url = 'mongodb://localhost:27017';
+    var dbName = 'blog';
+}
+
 var handlebars = require('express-handlebars').create({
     defaultLayout: 'main',
     helpers: {
@@ -8,7 +17,35 @@ var handlebars = require('express-handlebars').create({
     if(!this._sections) this._sections = {};
     this._sections[name] = options.fn(this);
     return null;
-    }}});
+}}});
+
+app.get('', function(req, res){
+  var MongoClient = mongodb.MongoClient;
+
+  MongoClient.connect(url, function(err, client) {  
+    const db = client.db(dbName);
+  
+    findMainTiles(db, function(data){
+        res.render('home', {data: data[0].tailes, pageTestScript: '/qa/tests-home.js'});
+        client.close();
+    });
+
+  });
+});
+
+app.get('/js', function(req, res){
+    var MongoClient = mongodb.MongoClient;
+    
+    MongoClient.connect(url, function(err, client) {  
+      const db = client.db(dbName);
+    
+      findJsTiles(db, function(data){
+          res.render('js', {data: data[0].tailes, pageTestScript: '/qa/tests-js.js'});
+          client.close();
+      });
+  
+    });
+});
     
 app.engine('handlebars',  handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -32,12 +69,6 @@ app.use(express.urlencoded({extended: false}));
 app.get('', function(req, res){
     res.render('home', {
         pageTestScript: '/qa/tests-home.js'
-    });
-});
-
-app.get('/js', function(req, res){
-    res.render('js', {
-        pageTestScript: '/qa/tests-js.js'
     });
 });
 
@@ -65,6 +96,7 @@ app.get('/contest/vacation-photo',function(req,res){
     year: now.getFullYear(),month: now.getMonth()
     });
 });
+
 
 var formidable = require('formidable');
 

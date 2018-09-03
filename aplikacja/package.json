@@ -13,6 +13,9 @@
     "grunt-cafe-mocha": "^0.1.13",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-exec": "^3.0.0",
+    "mongo": "^0.1.0",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.12",
     "nodemon": "^1.18.3"
   },
   "devDependencies": {

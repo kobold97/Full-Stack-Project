@@ -1,7 +1,10 @@
 <ul class="tiles">
-    {{!-- //<li>{{> time}}</li> --}}
+  {{#each data}}
+  <li>
+    <a href="{{link}}">
+      <h1>{{name}}</h1>
+    </a>
+      <img src="/images/{{photograph}}">
+  </li>
+  {{/each}}
 </ul>
-{{#section 'scripts'}}
-<script src="/scripts/dbhelper.js"></script>
-<script src="/scripts/sub-page.js"></script>
-{{/section}}
