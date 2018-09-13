@@ -39,6 +39,37 @@ app.get('/contact', function(req, res){
     res.render('contact');
 });
 
+app.get('/svg-converter', function(req, res){
+    res.render('svg-converter-interface');
+});
+
+var formidable = require('formidable');
+var fs = require('fs');
+
+app.post('/xd', function(req, res){
+    function b64EncodeUnicode(str) {
+        // first we use encodeURIComponent to get percent-encoded UTF-8,
+        // then we convert the percent encodings into raw bytes which
+        // can be fed into btoa.
+        return encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+        });
+    }
+    
+
+
+
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+        fs.readFile( files.svg.path, function(err, data){
+            console.log(files.svg.path);
+        data = 'data:image/svg+xml;utf8;base64,' + String(Buffer.from(b64EncodeUnicode(data)).toString('base64'));
+        res.render('download', {data: data});
+    });
+});
+});
+
 app.post('/process', function(req, res){
     console.log('Form (from querystring): ' + req.query.form);
     console.log('CSRF token (from hidden form field): ' + req.body._csrf);

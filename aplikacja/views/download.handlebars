@@ -1,0 +1,63 @@
+{{#section 'scripts'}}
+<script>
+    window.onload = function () {
+        window.base64 = '{{data}}'
+        var img = new Image();
+        img.src = decodeHtml(base64);
+        var safe_atob = base64.substr(decodeHtml(base64).lastIndexOf(',') + 1);
+        var svg = b64DecodeUnicode(safe_atob);
+        var elem = createElementFromHTML(String(svg));
+        for (var i = 0; i < elem.length; i++) {
+            document.body.appendChild(elem[i]);
+        }
+        var elem = document.querySelector('svg');
+        var size = elem.getBBox();
+        var canvas = document.createElement('canvas');
+        img.onload = function () {
+            document.body.appendChild(img);
+            console.log(img.width, img.height);
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            var imgURI = canvas.toDataURL('image/png');
+            document.body.appendChild(canvas);
+            triggerDownload(imgURI);
+        }
+    }
+
+    function b64DecodeUnicode(str) {
+        // Going backwards: from bytestream, to percent-encoding, to original string.
+        return decodeURIComponent(atob(str).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    }
+
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
+    function createElementFromHTML(htmlString) {
+        var div = document.createElement('div');
+        div.innerHTML = htmlString.trim();
+        return div.childNodes;
+    }
+    function triggerDownload(imgURI) {
+        var evt = new MouseEvent('click', {
+            view: window,
+            bubbles: false,
+            cancelable: true
+        });
+
+        var a = document.createElement('a');
+        a.setAttribute('download', 'MY_COOL_IMAGE.png');
+        a.setAttribute('href', imgURI);
+        a.setAttribute('target', '_blank');
+
+        a.dispatchEvent(evt);
+    }
+</script> {{/section}}
+
+<h1>Processing...</h1>

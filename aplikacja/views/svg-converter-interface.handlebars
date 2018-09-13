@@ -1,0 +1,21 @@
+{{#section 'head'}}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+{{/section}}
+
+<form class="form-horizontal" role="form"
+ enctype="multipart/form-data" method="POST"
+ action="/xd">
+ <div class="form-group">
+ <label for="fieldPhoto" class="col-sm-2 control-label">UR SVG
+ </label>
+ <div class="col-sm-4">
+ <input type="file" class="form-control" required accept=".svg"
+ id="fieldPhoto" name="svg">
+ </div>
+ </div>
+ <div class="form-group">
+ <div class="col-sm-offset-2 col-sm-4">
+ <button type="submit" class="btn btn-primary">Submit</button>
+ </div>
+ </div>
+</form>
